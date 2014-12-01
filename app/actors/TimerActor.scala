@@ -5,7 +5,7 @@ import play.api.libs.json.Json._
 
 import akka.actor.Actor
 
-import play.api.libs.iteratee.{Concurrent, Enumerator}
+import play.api.libs.iteratee.{ Concurrent, Enumerator }
 
 import play.api.libs.iteratee.Concurrent.Channel
 import play.api.Logger
@@ -13,11 +13,6 @@ import play.api.libs.concurrent.Execution.Implicits._
 
 import scala.concurrent.duration._
 
-/**
- * User: Luigi Antonini
- * Date: 19/07/13
- * Time: 15.38
- */
 class TimerActor extends Actor {
 
   // crate a scheduler to send a message to this actor every socket
@@ -77,13 +72,19 @@ class TimerActor extends Actor {
           webSockets.get(userId).get.channel push Json.toJson(json)
       }
 
+    case NodeData(node: String, log: String) =>
+      usersTimes.foreach {
+        case (userId, millis) =>
+          val json = Map("node" -> node, "log" -> log)
+          webSockets.get(userId).get.channel push Json.toJson(json)
+      }
 
     case Start(userId) =>
       usersTimes += (userId -> 0)
 
     case Stop(userId) =>
       removeUserTimer(userId)
-      
+
       val json = Map("data" -> toJson(0))
       webSockets.get(userId).get.channel push Json.toJson(json)
 
@@ -110,7 +111,6 @@ class TimerActor extends Actor {
 
 }
 
-
 sealed trait SocketMessage
 
 case class StartSocket(userId: Int) extends SocketMessage
@@ -122,4 +122,6 @@ case class UpdateTime() extends SocketMessage
 case class Start(userId: Int) extends SocketMessage
 
 case class Stop(userId: Int) extends SocketMessage
+
+case class NodeData(node: String, data: String) extends SocketMessage
 
