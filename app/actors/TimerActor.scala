@@ -69,10 +69,21 @@ class TimerActor extends Actor {
           usersTimes += (userId -> (millis + 1000))
 
           val json = Map("node" -> toJson(2), "data" -> toJson("putting 7"))
+          val json2 = Map("node2" -> toJson(3), "data2" -> toJson("getting 2333333")
+              )
 
           // writing data to tha channel,
           // will send data to all WebSocket opend form every user
           webSockets.get(userId).get.channel push Json.toJson(json)
+//          webSockets.get(userId).get.channel push Json.toJson(json2)
+          
+          
+          //for new data
+//        case (node, data) =>
+//        val futureResponse = WS.url(s"http://twitter-search-proxy.herokuapp.com/search/tweets?q=$s").get()
+//        futureResponse.map { response =>
+//            JsArray((response.json \\ "text").distinct)
+//        } pipeTo sender
       }
 
     case NodeData(node: String, log: String) =>

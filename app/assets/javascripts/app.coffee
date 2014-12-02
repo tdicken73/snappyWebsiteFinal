@@ -37,7 +37,6 @@ utils.filter('timer' ,['time', (time) ->
         $scope.data = JSON.parse(msg.data).data   
       )
 
-
    
   $scope.start = ->
     $http.get(jsRoutes.controllers.AppController.start().url).success( -> )
