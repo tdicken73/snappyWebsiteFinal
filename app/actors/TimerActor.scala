@@ -68,13 +68,13 @@ class TimerActor extends Actor {
         case (userId, millis) =>
           usersTimes += (userId -> (millis + 1000))
 
-          val json = Map("node" -> toJson(2), "data" -> toJson("putting 7"))
-          val json2 = Map("node2" -> toJson(3), "data2" -> toJson("getting 2333333")
-              )
+//          val json = Map("node" -> toJson(2), "data" -> toJson("putting 7"))
+//          val json2 = Map("node2" -> toJson(3), "data2" -> toJson("getting 2333333")
+//              )
 
           // writing data to tha channel,
           // will send data to all WebSocket opend form every user
-          webSockets.get(userId).get.channel push Json.toJson(json)
+//          webSockets.get(userId).get.channel push Json.toJson(json)
 //          webSockets.get(userId).get.channel push Json.toJson(json2)
           
           
@@ -95,6 +95,7 @@ class TimerActor extends Actor {
 
     case Start(userId) =>
       usersTimes += (userId -> 0)
+      
       receptionist ! Put("key","data")
 
     case Stop(userId) =>
