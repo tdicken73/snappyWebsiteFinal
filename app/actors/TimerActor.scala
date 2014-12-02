@@ -103,6 +103,8 @@ class TimerActor extends Actor {
       
       receptionist ! Put("key","data")
       receptionist ! Put("asdfasdfa", "asdfasdfa")
+      receptionist ! Put("todd", "jared")
+      receptionist ! Put("WV", "VA")
       
 
     case Stop(userId) =>

@@ -27,15 +27,31 @@ utils.filter('timer' ,['time', (time) ->
     wsUrl = jsRoutes.controllers.AppController.indexWS().webSocketURL()
   
   
-  
+   
     $scope.socket = new WebSocket(wsUrl)
+    listmaster = []
     $scope.socket.onmessage = (msg) ->
       $scope.$apply( ->
         console.log "received : #{msg.data}"
         $scope.time = JSON.parse(msg.data).data   
+        
         $scope.node = JSON.parse(msg.data).node
-        $scope.data = JSON.parse(msg.data).data   
+        listappend = []
+        listappend.push $scope.node
+        list = $scope.node
+
+        console.log "received  node: #{list}"
+        $scope.data = JSON.parse(msg.data).data
+        listdata = $scope.data
+        listappend.push $scope.data
+        listmaster.concat listappend
+        console.log "received scope.data: #{listdata}"
+        console.log "received listappend: #{listappend}"
+        $scope.socket.send($scope.node)
+        listmaster.concat listappend
+        console.log "received listmaster: #{listappend}"
       )
+	
 
    
   $scope.start = ->
