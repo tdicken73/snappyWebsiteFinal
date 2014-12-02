@@ -8,7 +8,7 @@ import akka.event.Logging
 
 object Organizer {
   case class Make(num: Integer)
-  case class DoneInit
+  case object DoneInit
 }
 
 class Organizer(backups: Integer, initialNodes: Integer) extends Actor {
