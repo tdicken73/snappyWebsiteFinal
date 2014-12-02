@@ -11,6 +11,7 @@ import play.api.libs.iteratee.Enumerator
 import play.api.libs.json._
 import play.api.libs.json.Json._
 import akka.actor.Props
+import akka.event.Logging
 
 
 class TimerActor extends Actor {
@@ -22,7 +23,8 @@ class TimerActor extends Actor {
   case class UserChannel(userId: Int, var channelsCount: Int, enumerator: Enumerator[JsValue], channel: Channel[JsValue])
 
   lazy val log = Logger("application." + this.getClass.getName)
-
+ val log2 = Logging(context.system, this)
+  
   // this map relate every user with his UserChannel
   var webSockets = Map[Int, UserChannel]()
 
@@ -69,9 +71,11 @@ class TimerActor extends Actor {
           usersTimes += (userId -> (millis + 1000))
 
 //          val json = Map("node" -> toJson(2), "data" -> toJson("putting 7"))
-//          val json2 = Map("node2" -> toJson(3), "data2" -> toJson("getting 2333333")
+//          val json2 = Map("node" -> toJson(3), "data" -> toJson("getting 2333333")
 //              )
 
+ 
+          
           // writing data to tha channel,
           // will send data to all WebSocket opend form every user
 //          webSockets.get(userId).get.channel push Json.toJson(json)
@@ -90,6 +94,7 @@ class TimerActor extends Actor {
       usersTimes.foreach {
         case (userId, millis) =>
           val json = Map("node" -> node, "data" -> log)
+          log2.info("nodename:"+node+" logInfo: "+log)
           webSockets.get(userId).get.channel push Json.toJson(json)
       }
 
@@ -97,6 +102,8 @@ class TimerActor extends Actor {
       usersTimes += (userId -> 0)
       
       receptionist ! Put("key","data")
+      receptionist ! Put("asdfasdfa", "asdfasdfa")
+      
 
     case Stop(userId) =>
       removeUserTimer(userId)
