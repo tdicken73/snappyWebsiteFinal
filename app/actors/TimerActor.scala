@@ -1,19 +1,20 @@
 package actors
 
-import play.api.libs.json._
-import play.api.libs.json.Json._
-
+import scala.concurrent.duration._
+import com.snappy.app.Receptionist
 import akka.actor.Actor
-
-import play.api.libs.iteratee.{ Concurrent, Enumerator }
-
-import play.api.libs.iteratee.Concurrent.Channel
 import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
+import play.api.libs.iteratee.Concurrent
+import play.api.libs.iteratee.Concurrent.Channel
+import play.api.libs.iteratee.Enumerator
+import play.api.libs.json._
+import play.api.libs.json.Json._
+import akka.actor.Props
 
-import scala.concurrent.duration._
 
 class TimerActor extends Actor {
+  import com.snappy.app.Node.Put
 
   // crate a scheduler to send a message to this actor every socket
   val cancellable = context.system.scheduler.schedule(0 second, 1 second, self, UpdateTime())
@@ -27,6 +28,8 @@ class TimerActor extends Actor {
 
   // this map relate every user with his current time
   var usersTimes = Map[Int, Int]()
+  
+  val receptionist = context.actorOf(Props(new Receptionist()), "receptionist")
 
   override def receive = {
 
@@ -75,12 +78,13 @@ class TimerActor extends Actor {
     case NodeData(node: String, log: String) =>
       usersTimes.foreach {
         case (userId, millis) =>
-          val json = Map("node" -> node, "log" -> log)
+          val json = Map("node" -> node, "data" -> log)
           webSockets.get(userId).get.channel push Json.toJson(json)
       }
 
     case Start(userId) =>
       usersTimes += (userId -> 0)
+      receptionist ! Put("key","data")
 
     case Stop(userId) =>
       removeUserTimer(userId)

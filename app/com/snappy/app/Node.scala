@@ -1,14 +1,14 @@
 package com.snappy.app
 
 import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
-
 import org.fusesource.lmdbjni.Database
 import org.fusesource.lmdbjni.Env
-
 import akka.actor.Actor
 import akka.event.Logging
+import java.nio.file.Files
+import java.nio.file.Paths
+import akka.actor.ActorRef
+import actors.NodeData
 
 object Node {
   case class Put(key: String, data: String)
@@ -20,16 +20,22 @@ object Node {
   case object Fail
 }
 
-class Node extends Actor {
+class Node(logRef: ActorRef) extends Actor {
   import Node._
 
   val log = Logging(context.system, this)
 
+  
+  
   val name = self.path.name
   var env = new Env();
 
+  log.info(name+" created")
+  
   def receive = {
     case Put(key, data) =>
+      logRef ! NodeData(name, "Store "+key+", " + data)
+
       if (storeData(key, data)) sender ! Done
       else sender ! Fail
     case Get(key) =>
@@ -40,9 +46,6 @@ class Node extends Actor {
       context.stop(self)
   }
   
-
-
-
   def storeData(key: String, data: String): Boolean = {
     var env = new Env();
     if (!Files.exists(Paths.get("/tmp/" + name))) new File("/tmp/" + name).mkdir()

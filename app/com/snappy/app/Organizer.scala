@@ -8,10 +8,10 @@ import akka.event.Logging
 
 object Organizer {
   case class Make(num: Integer)
-  case class DoneInit
+  case object DoneInit
 }
 
-class Organizer(backups: Integer, initialNodes: Integer) extends Actor {
+class Organizer(backups: Integer, initialNodes: Integer, logRef: ActorRef) extends Actor {
   import Organizer._
   import Receptionist._
   import Node._
@@ -29,7 +29,7 @@ class Organizer(backups: Integer, initialNodes: Integer) extends Actor {
   context.parent ! DoneInit
 
   // Used to get a new node
-  def nodeProps(): Props = Props(new Node())
+  def nodeProps(): Props = Props(new Node(logRef))
 
   def receive = {
     case Make(num: Integer) =>
