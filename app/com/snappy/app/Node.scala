@@ -34,6 +34,7 @@ class Node(logRef: ActorRef) extends Actor {
   
   def receive = {
     case Put(key, data) =>
+//      log.info("sending to log ref node:"+name+"key: "+key)
       logRef ! NodeData(name, "Store "+key+", " + data)
 
       if (storeData(key, data)) sender ! Done
