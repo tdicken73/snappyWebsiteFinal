@@ -9,6 +9,7 @@ node7 = []
 node8 = []
 node9 = []
 node10 = []
+
 utils.controller('TimerController', ($scope, $http) ->
   
   startWS = ->
@@ -27,23 +28,23 @@ utils.controller('TimerController', ($scope, $http) ->
         
         if($scope.node == "node1")
         	node1.push $scope.data
-        if($scope.node == "node2")
+        else if($scope.node == "node2")
         	node2.push $scope.data
-        if($scope.node == "node3")
+        else if($scope.node == "node3")
         	node3.push $scope.data
-        if($scope.node == "node4")
+        else if($scope.node == "node4")
         	node4.push $scope.data
-        if($scope.node == "node5")
+        else if($scope.node == "node5")
         	node5.push $scope.data
-        if($scope.node == "node6")
+        else if($scope.node == "node6")
         	node6.push $scope.data
-        if($scope.node == "node7")
+        else if($scope.node == "node7")
         	node7.push $scope.data
-        if($scope.node == "node8")
+        else if($scope.node == "node8")
         	node8.push $scope.data
-        if($scope.node == "node9")
+        else if($scope.node == "node9")
         	node9.push $scope.data
-        if($scope.node == "node10")
+        else if($scope.node == "node10")
         	node10.push $scope.data
         
         $scope.node1 = node1
