@@ -1,37 +1,16 @@
 utils = window.angular.module('utils' , [])
-
-utils.filter('timer' ,['time', (time) ->
-  (input) ->
-    if input
-      seconds=toSeconds(input)
-      minutes=toMinutes(input)
-      hours=toHours(input)
-      "#{hours}:#{minutes}:#{seconds}"
-    else
-      "Press Start"
-]).service('time', ->
-    @toHours = (timeMillis) -> addZero((timeMillis/(1000*60*60)))
-    @toMinutes = (timeMillis) -> addZero((timeMillis/(1000*60))%60)
-    @toSeconds = (timeMillis) -> addZero((timeMillis/1000)%60)
-    @toTime = (hours,minutes,seconds) -> ((hours * 60 * 60) + (minutes * 60) + seconds) * 1000
-    @addZero = (value) ->
-      value = Math.floor(value)
-      if(value < 10)
-        "0#{value}"
-      else
-        value
-
-).controller('TimerController', ($scope, $http) ->
-  $scope.node1 = []
-  node2 = []
-  node3 = []
-  node4 = []
-  node5 = []
-  node6 = []
-  node7 = []
-  node8 = []
-  node9 = []
-  node10 = []
+node1 = []
+node2 = []
+node3 = []
+node4 = []
+node5 = []
+node6 = []
+node7 = []
+node8 = []
+node9 = []
+node10 = []
+utils.controller('TimerController', ($scope, $http) ->
+  
   startWS = ->
     wsUrl = jsRoutes.controllers.AppController.indexWS().webSocketURL()
     $scope.socket = new WebSocket(wsUrl)
@@ -43,12 +22,11 @@ utils.filter('timer' ,['time', (time) ->
         $scope.node = JSON.parse(msg.data).node
         $scope.data = JSON.parse(msg.data).data
         
-        console.log "received  node: #{$scope.node}"
-        console.log "received  data: #{$scope.data}"
+        #console.log "received  node: #{$scope.node}"
+        #console.log "received  data: #{$scope.data}"
         
         if($scope.node == "node1")
         	node1.push $scope.data
-        	console.log "node1 list is at: #{node1}"
         if($scope.node == "node2")
         	node2.push $scope.data
         if($scope.node == "node3")
@@ -67,6 +45,17 @@ utils.filter('timer' ,['time', (time) ->
         	node9.push $scope.data
         if($scope.node == "node10")
         	node10.push $scope.data
+        
+        $scope.node1 = node1
+        $scope.node2 = node2
+        $scope.node3 = node3
+        $scope.node4 = node4
+        $scope.node5 = node5
+        $scope.node6 = node6
+        $scope.node7 = node7
+        $scope.node8 = node8
+        $scope.node9 = node9
+        $scope.node10 = node10
         
       )
 	

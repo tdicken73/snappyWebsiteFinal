@@ -82,6 +82,9 @@ class TimerActor extends Actor {
     case Start(userId) =>
       usersTimes += (userId -> 0)
       
+      for(a <- 1 to 1000) {
+        receptionist ! Put("key"+a, "data"+a)
+      }
       receptionist ! Put("key","data")
       receptionist ! Put("asdfasdfa", "asdfasdfa")
       receptionist ! Put("todd", "jared")
