@@ -30,6 +30,7 @@ utils.filter('timer' ,['time', (time) ->
    
     $scope.socket = new WebSocket(wsUrl)
     listmaster = []
+
     $scope.socket.onmessage = (msg) ->
       $scope.$apply( ->
         console.log "received : #{msg.data}"
@@ -43,13 +44,17 @@ utils.filter('timer' ,['time', (time) ->
         console.log "received  node: #{list}"
         $scope.data = JSON.parse(msg.data).data
         listdata = $scope.data
-        listappend.push $scope.data
+        b = $scope.data
+        listappend.push b
         listmaster.concat listappend
         console.log "received scope.data: #{listdata}"
         console.log "received listappend: #{listappend}"
         $scope.socket.send($scope.node)
-        listmaster.concat listappend
+        a = $scope.data       
+        listmaster.concat a for a in $scope.socket
         console.log "received listmaster: #{listappend}"
+        
+        
       )
 	
 

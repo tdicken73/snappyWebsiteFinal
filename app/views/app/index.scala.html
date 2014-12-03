@@ -13,36 +13,41 @@
   
 
 </div>
+<body>
     <div class="container">
         <div ng-controller="TimerController">
+
+        	<div ng-repeat="data in nodedatas">
+        		Data: {{data}} <br/>
+        		<label>{{data}}</label>
+        		<ul><li ng-repeat="data in datas">{{data}}</li></ul>
+        	</div>
             <form ng-submit="sendName()">
                 <label>Node: {{node}}</label>
-                
-
             </form>
             <form ng-submit="sendName()">
                 <label>Data:</label>
-   				<label>{{data}}</label>
-<!--                 <ul><li ng-repeat="data in datas">{{data}}</li></ul> -->
-            </form>
-<!--              <form ng-submit="sendName()">
-                <label>Node: {{node2}}</label>
-                
+                <ul class=TimerActor>
+    				<li ng-repeat="data in datas">
+   				     <strong>{{ node }}</strong>
+   				     <p>{{ data }}</p>
+  				    </li>
+				</ul>
+                <form ng-submit="sendName()">
+                  <div ng-repeat="i in node">
+                    <div contentEditable="false" ng-model="input" title="Node">{{node}}</div>
+             	  <pre>{{data}}</pre>
+      	 	     </div>
+ 				</form>
+   		           <!-- <ul><li ng-repeat="data in datas">{{data}}</li></ul> -->
 
-            </form>
             <form ng-submit="sendName()">
-                <label>Data:</label>
-   				<label>{{data2}}</label>
-                <ul><li ng-repeat="data in datas">{{data2}}</li></ul>
-            </form> -->
+                <ul><li ng-repeat="data in datas">{{$scope.data}}</li></ul>
+            </form>
    
 
         </div>
     </div>
-    <div ng-app="datas">
-  	<div ng-repeat="data in datas.split('')">
-  		{{$data}}. {{data}}
-  	</div>
 </body>
             </div>
 }
