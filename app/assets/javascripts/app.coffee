@@ -22,38 +22,51 @@ utils.filter('timer' ,['time', (time) ->
         value
 
 ).controller('TimerController', ($scope, $http) ->
-
+  $scope.node1 = []
+  node2 = []
+  node3 = []
+  node4 = []
+  node5 = []
+  node6 = []
+  node7 = []
+  node8 = []
+  node9 = []
+  node10 = []
   startWS = ->
     wsUrl = jsRoutes.controllers.AppController.indexWS().webSocketURL()
-  
-  
-   
     $scope.socket = new WebSocket(wsUrl)
-    listmaster = []
 
     $scope.socket.onmessage = (msg) ->
       $scope.$apply( ->
-        console.log "received : #{msg.data}"
-        $scope.time = JSON.parse(msg.data).data   
-        
+  
+ 
         $scope.node = JSON.parse(msg.data).node
-        listappend = []
-        listappend.push $scope.node
-        list = $scope.node
-
-        console.log "received  node: #{list}"
         $scope.data = JSON.parse(msg.data).data
-        listdata = $scope.data
-        b = $scope.data
-        listappend.push b
-        listmaster.concat listappend
-        console.log "received scope.data: #{listdata}"
-        console.log "received listappend: #{listappend}"
-        $scope.socket.send($scope.node)
-        a = $scope.data       
-        listmaster.concat a for a in $scope.socket
-        console.log "received listmaster: #{listappend}"
         
+        console.log "received  node: #{$scope.node}"
+        console.log "received  data: #{$scope.data}"
+        
+        if($scope.node == "node1")
+        	node1.push $scope.data
+        	console.log "node1 list is at: #{node1}"
+        if($scope.node == "node2")
+        	node2.push $scope.data
+        if($scope.node == "node3")
+        	node3.push $scope.data
+        if($scope.node == "node4")
+        	node4.push $scope.data
+        if($scope.node == "node5")
+        	node5.push $scope.data
+        if($scope.node == "node6")
+        	node6.push $scope.data
+        if($scope.node == "node7")
+        	node7.push $scope.data
+        if($scope.node == "node8")
+        	node8.push $scope.data
+        if($scope.node == "node9")
+        	node9.push $scope.data
+        if($scope.node == "node10")
+        	node10.push $scope.data
         
       )
 	
