@@ -23,25 +23,21 @@ object Node {
 class Node(logRef: ActorRef) extends Actor {
   import Node._
 
-  val log = Logging(context.system, this)
+//  val log = Logging(context.system, this)
 
   
   
   val name = self.path.name
   var env = new Env();
 
-  log.info(name+" created")
-  
+
   def receive = {
     case Put(key, data) =>
-//      log.info("sending to log ref node:"+name+"key: "+key)
       logRef ! NodeData(name, "Store "+key+", " + data)
-
       if (storeData(key, data)) sender ! Done
       else sender ! Fail
     case Get(key) =>
       sender ! Result(key, getData(key))
-      
     case Stop =>
       env.close()
       context.stop(self)
@@ -54,7 +50,6 @@ class Node(logRef: ActorRef) extends Actor {
       env.open("/tmp/" + name);
       var db = env.openDatabase(name);
       db.put(key.getBytes(), data.getBytes())
-
       db.close();
     } finally {
       // Make sure you close the env to avoid resource leaks.
@@ -62,24 +57,20 @@ class Node(logRef: ActorRef) extends Actor {
     }
     true
   }
-
+  
   def getData(key: String): String = {
     var env = new Env();
     if (!Files.exists(Paths.get("/tmp/" + name))) new File("/tmp/" + name).mkdir()
-
     try {
       env.open("/tmp/" + name);
       var db = env.openDatabase(name);
-
       val result = new String(db.get(key.getBytes()))
-      log.debug("fetched "+result)
       db.close();
       result
     } finally {
       // Make sure you close the env to avoid resource leaks.
       env.close();
     }
-
   }
 
 

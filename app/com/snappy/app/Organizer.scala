@@ -16,7 +16,7 @@ class Organizer(backups: Integer, initialNodes: Integer, logRef: ActorRef) exten
   import Receptionist._
   import Node._
   
-  val log = Logging(context.system, this)
+//  val log = Logging(context.system, this)
 
   // List of current nodes
   var children = List.empty[ActorRef]
@@ -37,15 +37,15 @@ class Organizer(backups: Integer, initialNodes: Integer, logRef: ActorRef) exten
       if (whoIsUp == null) whoIsUp = children
 
     case Get(key: String) =>
-      log.debug("Organizer got get: "+key)
+//      log.debug("Organizer got get: "+key)
       get(key)
 
     case Put(key: String, value: String) =>
-      log.debug("Organizer got put: "+key+", "+value)
+//      log.debug("Organizer got put: "+key+", "+value)
       put(key, value)
       
     case Result(key: String, value: String) =>
-      log.debug("Organizer got result "+key+", "+value)
+//      log.debug("Organizer got result "+key+", "+value)
       context.parent ! Result(key, value)
   }
 
