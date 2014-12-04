@@ -22,8 +22,8 @@ class TimerActor extends Actor {
 
   case class UserChannel(userId: Int, var channelsCount: Int, enumerator: Enumerator[JsValue], channel: Channel[JsValue])
 
-  lazy val log = Logger("application." + this.getClass.getName)
- val log2 = Logging(context.system, this)
+//  lazy val log = Logger("application." + this.getClass.getName)
+// val log2 = Logging(context.system, this)
   
   // this map relate every user with his UserChannel
   var webSockets = Map[Int, UserChannel]()
@@ -37,7 +37,7 @@ class TimerActor extends Actor {
 
     case StartSocket(userId) =>
 
-      log.debug(s"start new socket for user $userId")
+//      log.debug(s"start new socket for user $userId")
 
       // get or create the touple (Enumerator[JsValue], Channel[JsValue]) for current user
       // Channel is very useful class, it allows to write data inside its related 
@@ -55,8 +55,8 @@ class TimerActor extends Actor {
       userChannel.channelsCount = userChannel.channelsCount + 1
       webSockets += (userId -> userChannel)
 
-      log debug s"channel for user : $userId count : ${userChannel.channelsCount}"
-      log debug s"channel count : ${webSockets.size}"
+//      log debug s"channel for user : $userId count : ${userChannel.channelsCount}"
+//      log debug s"channel count : ${webSockets.size}"
 
       // return the enumerator related to the user channel,
       // this will be used for create the WebSocket
@@ -75,7 +75,7 @@ class TimerActor extends Actor {
       usersTimes.foreach {
         case (userId, millis) =>
           val json = Map("node" -> node, "data" -> log)
-          log2.info("nodename:"+node+" logInfo: "+log)
+//          log2.info("nodename:"+node+" logInfo: "+log)
           webSockets.get(userId).get.channel push Json.toJson(json)
       }
 
@@ -99,18 +99,18 @@ class TimerActor extends Actor {
 
     case SocketClosed(userId) =>
 
-      log debug s"closed socket for $userId"
+//      log debug s"closed socket for $userId"
 
       val userChannel = webSockets.get(userId).get
 
       if (userChannel.channelsCount > 1) {
         userChannel.channelsCount = userChannel.channelsCount - 1
         webSockets += (userId -> userChannel)
-        log debug s"channel for user : $userId count : ${userChannel.channelsCount}"
+//        log debug s"channel for user : $userId count : ${userChannel.channelsCount}"
       } else {
         removeUserChannel(userId)
         removeUserTimer(userId)
-        log debug s"removed channel and timer for $userId"
+//        log debug s"removed channel and timer for $userId"
       }
 
   }

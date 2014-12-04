@@ -19,7 +19,7 @@ class Receptionist extends Actor {
   import Organizer._
   import Node._
 
-  val log = Logging(context.system, this)
+//  val log = Logging(context.system, this)
 
   val organizer = context.actorOf(Props(new Organizer(3, 0, context.parent)), "organizer")
   organizer ! Make(10)
@@ -27,7 +27,7 @@ class Receptionist extends Actor {
   def receive = {
 
     case Put(key, data) =>
-      log.debug("recep got put:" + key + ", " + data)
+//      log.debug("recep got put:" + key + ", " + data)
       put(key, data)
 
     case Get(key) =>
