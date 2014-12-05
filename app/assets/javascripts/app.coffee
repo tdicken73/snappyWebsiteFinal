@@ -46,25 +46,27 @@ utils.controller('TimerController', ($scope, $http) ->
         	node9.push $scope.data
         else if($scope.node == "node10")
         	node10.push $scope.data
-        	
+        
+        if(node1.length > 20) 
+        	node1 = node1.splice(-10)	
         if(node2.length > 20) 
-        	node2 = node2.slice(-10)
+        	node2 = node2.splice(-10)
         if(node3.length > 20) 
-        	node3 = node3.slice(-10)
+        	node3 = node3.splice(-10)
         if(node4.length > 20) 
-        	node5 = node4.slice(-10)
+        	node5 = node4.splice(-10)
         if(node5.length > 20) 
-        	node5 = node5.slice(-10)
+        	node5 = node5.splice(-10)
         if(node6.length > 20) 
-        	node6 = node6.slice(-10)
+        	node6 = node6.splice(-10)
         if(node7.length > 20) 
-        	node7 = node7.slice(-10)
+        	node7 = node7.splice(-10)
         if(node8.length > 20) 
-        	node8 = node8.slice(-10)
+        	node8 = node8.splice(-10)
         if(node9.length > 20) 
-        	node9 = node9.slice(-10)
+        	node9 = node9.splice(-10)
         if(node10.length > 20) 
-        	node10 = node10.slice(-10)
+        	node10 = node10.splice(-10)
         		
         $scope.node1 = node1
         $scope.node2 = node2
@@ -78,8 +80,6 @@ utils.controller('TimerController', ($scope, $http) ->
         $scope.node10 = node10
         
       )
-	
-
    
   $scope.start = ->
     $http.get(jsRoutes.controllers.AppController.start().url).success( -> )
