@@ -5,197 +5,226 @@
 <div class="jumbotron" ng-controller="TimerController">
 	<div class="container">
 
-<ul class="nav nav-tabs">
-  <li role="presentation" class="container"><a href="snappy-head">Home</a></li>
-  <li role="presentation" class="container"><a href="snappy-code">Code</a></li>
-  <li role="presentation" class="container"><a href="snappy-about">About</a></li>
-  <li role="presentation" class="container"><a href="snappy-links">Links</a></li>
-  <li role="presentation" class="container"><a href="snappy-contact">Contact</a></li>
+		<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+			<li role="presentation" class="active"><a href="#snappy-head"
+				data-toggle="tab">Home</a></li>
+			<li role="presentation"><a href="#snappy-code" data-toggle="tab">Code</a></li>
+			<li role="presentation"><a href="#snappy-about"
+				data-toggle="tab">About</a></li>
+			<li role="presentation"><a href="#snappy-links"
+				data-toggle="tab">Links</a></li>
+			<li role="presentation"><a href="#snappy-contact"
+				data-toggle="tab">Contact</a></li>
 
-</ul>
+		</ul>
 	</div>
 </div>
 
 <body>
 
-    <div id="main">
-	<div class="container">
-	        <div href="snappy-code">
-                <h1>Snappy Snappy Snappy</h1>
-                <h3><b>Technologies in use</b>
-<ul>
-  <li>Scala</li>
-  <li>Akka</li>
-  <li>Websockets</li>
-  <li>Play</li>
-  <li>AWS</li>
-  <li>Polymer</li>
-  <li>Angular</li>
-</ul>      
-                <h1>Contact</h1>
-                <h2>Jared Blatt &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jblatt1 at mix.wvu.edu</h2>
-                <h2>Todd Dicken &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tdicken at mix.wvu.edu</h2>  
- </div>
-                <h1>About</h1>
-                <h3>In the world we live in today, there are several existing databases that have great performance.  Despite this, the need for newer, better, and faster tools are always needed.   It is important for any company to always strive to make use of these new tools in order to stay competitive in the market.  If a technology company becomes satisfied with its current state and fails to strive to be better, it will be surpassed and soon forgotten.  
-                
-    Snappy Database will be a NoSQL database that makes use of several technologies and techniques in order to become very high performance.  It will be built upon an existing database, Lightning Memory-Mapped Database by Symas.  The Lightning Memory-Mapped Database is a compact, key-value store database that has very high-performance because it is a purely in-memory database.  In order to implement concurrency via actors, we will use the high-level functioning programming language, Scala, to develop the database.  Scala has an Akka actor system in its standard library, and runs on the Java Virtual Machine, allowing consistency across platforms.  Gossiping protocols for consistency of data purposes are also developed with the actor system. This allows for synchronous and asynchronous calls to the database.For REST/HTTP-based integration layers on top of Scala, we will use Spray.io, a modular, actor-based, open-source toolkit.  Amazon Web Services such as their Simple Storage Service and Elastic Compute Cloud will be used for storage as well as testing our distributed system.  This will give our system the high security and reliability that Amazon provides.
-    Snappy Database aims to be a competitive database in the market by being high performance user friendly.  By achieving these goals, Snappy Database will prove to be useful for any company. </h3>
+	<div id="main">
+		<div id="my-tab-content" class="tab-content">
 
-            
-            <div id="snappy-about" style="display:none">
-                <h1>Code</h1>
-            </div>
-            
-            
-		<div ng-controller="TimerController">
-
-<!-- 	 		<ul ng-controller="TimerController">
-			Node 1
-			  <li quick-ng-repeat="data in node1|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
-				<li ng-repeat="data in node1|limitTo:-10 track by $index">{{data }}</li>
-			</ul>
-
-	 		<ul ng-controller="TimerController">
-			Node 2
-			  <li quick-ng-repeat="data in node2|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
-				<li ng-repeat="data in node2|limitTo:-10 track by $index">{{data2 }}</li>
-			</ul>
-				 		<ul ng-controller="TimerController">
-			Node 3
-			  <li quick-ng-repeat="data in node3|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
-				<li ng-repeat="data in node3|limitTo:-10 track by $index">{{data3 }}</li>
-			</ul>
-				 		<ul ng-controller="TimerController">
-			Node 4
-			  <li quick-ng-repeat="data4 in node4|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
-				<li ng-repeat="data4 in node4|limitTo:-10 track by $index">{{data4 }}</li>
-			</ul>
-				 		<ul ng-controller="TimerController">
-			Node 5
-			  <li quick-ng-repeat="data in node5|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
-				<li ng-repeat="data in node5|limitTo:-10 track by $index">{{data5 }}</li>
-			</ul> -->
-			                <h1>Output</h1>
+			<div ng-controller="TimerController" class="tab-pane active" id="snappy-head">
+				<h1>Snappy Head</h1>
+				<p>here is the main page</p>
+				<h1>Output</h1>
 				<button class="btn btn-primary col-sm-4 col-sm-offset-1"
-			ng-click="start()">Start</button><br>	<br><br><br>
-			
-			<div id="content-1">
+					ng-click="start()">Start</button>
+				<br> <br> <br> <br>
 
-            <div id="content-1-1"> 	
-		    <ul ng-controller="TimerController">
-		   
-			<b>Node 1</b>
-				<li ng-repeat="data in node1|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
-			</div>
-			</div>
-						 
-			<div id="content-2">
-			  
-            <div id="content-2-1"> 			
-            <ul ng-controller="TimerController">
-			<b>Node 2</b>
-				<li ng-repeat="data in node2|limitTo:-5 track by $index">{{data }}</li>
-			</ul>			 </div>
-				
-       <br>
-            <div id="content-2-2">
-             <ul ng-controller="TimerController">
-			<b>Node 3</b>
-				<li ng-repeat="data in node3|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
+				<div id="content-1">
 
-			</div>
-	
-            </div>
-			<div id="content-1">
-			    <br>
-            <div id="content-1-1"> 	
-             <ul ng-controller="TimerController">
-			<b>Node 4</b>
-				<li ng-repeat="data in node4|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
-			
-			</div>			
-            </div>
-            			    <br>
-           	<div id="content-2">
-            <div id="content-2-1">
-             <ul ng-controller="TimerController">
-			<b>Node 5</b>
-				<li ng-repeat="data in node5|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
-			</div>
-			 <br>
-            <div id="content-2-2">
-             <ul ng-controller="TimerController">
-			<b>Node 6</b>
-				<li ng-repeat="data in node6|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
-			</div>
-						    <br>
-            </div>
-     			<div id="content-1">
-			    <br>
-            <div id="content-1-1"> 	
-             <ul ng-controller="TimerController">
-			<b>Node 7</b>
-				<li ng-repeat="data in node7|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
-	
-			</div>
-			    <br>
-			</div>
-           	<div id="content-2">
-            <div id="content-2-1">
-             <ul ng-controller="TimerController">
-			<b>Node 8</b>
-				<li ng-repeat="data in node8|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
+					<div id="content-1-1">
+						<ul ng-controller="TimerController">
 
-			</div>
-				 <br>
-            <div id="content-2-2">
-             <ul ng-controller="TimerController">
-            
-			<b>Node 9</b>
-				<li ng-repeat="data in node9|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
+							<b>Node 1</b>
+							<li ng-repeat="data in node1|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+					</div>
+				</div>
 
-			</div>
-						    <br>
-            </div>
-            <div id="content-2">
-            <div id="content-2-1">
-            	
-             <ul ng-controller="TimerController">
-             
-			<b>Node 10</b>
-				<li ng-repeat="data in node8|limitTo:-5 track by $index">{{data }}</li>
-			</ul>
+				<div id="content-2">
 
-			</div>
-						    <br>
-            </div> 			    <br> <br> <br>
-    </div>
-			
-			
-<!-- 			
-			<ul ng-controller="TimerController">
-				<li ng-repeat="data in node3|limitTo:-10">{{ data }}</li>
-			</ul>
-			
-			<ul ng-controller="TimerController">
-				<li ng-repeat="data in node4|limitTo:-10">{{ data }}</li>
-			</ul>
-			
-			<ul ng-controller="TimerController">
-				<li ng-repeat="data in node5|limitTo:-10">{{ data }}</li>
-			</ul> -->
+					<div id="content-2-1">
+						<ul ng-controller="TimerController">
+							<b>Node 2</b>
+							<li ng-repeat="data in node2|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+					</div>
 
+					<br>
+					<div id="content-2-2">
+						<ul ng-controller="TimerController">
+							<b>Node 3</b>
+							<li ng-repeat="data in node3|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+
+					</div>
+
+				</div>
+				<div id="content-1">
+					<br>
+					<div id="content-1-1">
+						<ul ng-controller="TimerController">
+							<b>Node 4</b>
+							<li ng-repeat="data in node4|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+
+					</div>
+				</div>
+				<br>
+				<div id="content-2">
+					<div id="content-2-1">
+						<ul ng-controller="TimerController">
+							<b>Node 5</b>
+							<li ng-repeat="data in node5|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+					</div>
+					<br>
+					<div id="content-2-2">
+						<ul ng-controller="TimerController">
+							<b>Node 6</b>
+							<li ng-repeat="data in node6|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+					</div>
+					<br>
+				</div>
+				<div id="content-1">
+					<br>
+					<div id="content-1-1">
+						<ul ng-controller="TimerController">
+							<b>Node 7</b>
+							<li ng-repeat="data in node7|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+
+					</div>
+					<br>
+				</div>
+				<div id="content-2">
+					<div id="content-2-1">
+						<ul ng-controller="TimerController">
+							<b>Node 8</b>
+							<li ng-repeat="data in node8|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+
+					</div>
+					<br>
+					<div id="content-2-2">
+						<ul ng-controller="TimerController">
+
+							<b>Node 9</b>
+							<li ng-repeat="data in node9|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+
+					</div>
+					<br>
+				</div>
+				<div id="content-2">
+					<div id="content-2-1">
+
+						<ul ng-controller="TimerController">
+
+							<b>Node 10</b>
+							<li ng-repeat="data in node8|limitTo:-5 track by $index">{{data
+								}}</li>
+						</ul>
+
+					</div>
+					<br>
+				</div>
+				<br> <br> <br>
+			</div>
+
+
+			<div class="tab-pane" id="snappy-code">
+				<h1>Code</h1>
+			</div>
+
+
+			<div class="tab-pane" id="snappy-about">
+				<h1>Snappy Snappy Snappy</h1>
+				<h3>
+					<b>Technologies in use</b>
+					<ul>
+						<li>Scala</li>
+						<li>Akka</li>
+						<li>Websockets</li>
+						<li>Play</li>
+						<li>AWS</li>
+						<li>Bootstrap</li>
+						<li>Angular</li>
+					</ul>
+
+					<h1>About</h1>
+					<h3>
+						In the world we live in today, there are several existing
+						databases that have great performance. Despite this, the need for
+						newer, better, and faster tools are always needed. It is important
+						for any company to always strive to make use of these new tools in
+						order to stay competitive in the market. <br>
+						<br> If a technology company becomes satisfied with its
+						current state and fails to strive to be better, it will be
+						surpassed and soon forgotten. Snappy Database will be a NoSQL
+						database that makes use of several technologies and techniques in
+						order to become very high performance. It will be built upon an
+						existing database, Lightning Memory-Mapped Database by Symas. The
+						Lightning Memory-Mapped Database is a compact, key-value store
+						database that has very high-performance because it is a purely
+						in-memory database. In order to implement concurrency via actors,
+						we will use the high-level functioning programming language,
+						Scala, to develop the database. Scala has an Akka actor system in
+						its standard library, and runs on the Java Virtual Machine,
+						allowing consistency across platforms. Gossiping protocols for
+						consistency of data purposes are also developed with the actor
+						system. This allows for synchronous and asynchronous calls to the
+						database. <br>
+						<br> For REST/HTTP-based integration layers on top of Scala,
+						we will use Spray.io, a modular, actor-based, open-source toolkit.
+						Amazon Web Services such as their Simple Storage Service and
+						Elastic Compute Cloud will be used for storage as well as testing
+						our distributed system. This will give our system the high
+						security and reliability that Amazon provides. Snappy Database
+						aims to be a competitive database in the market by being high
+						performance user friendly. By achieving these goals, Snappy
+						Database will prove to be useful for any company.
+					</h3>
+			</div>
+
+			<div class="tab-pane" id="snappy-links">
+				<h1>Links</h1>
+				<a href="https://github.com/tdicken73/snappyWebsiteFinal/">SnappyDB
+					Github</a>
+			</div>
+
+			<div class="tab-pane" id="snappy-contact">
+				<h1>Contact</h1>
+				<h2>Jared Blatt
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jblatt1 at
+					mix.wvu.edu</h2>
+				<h2>
+					Todd Dicken &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tdicken at mix.wvu.edu
+				</h2>
+			</div>
 
 		</div>
+
+
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$('#tabs').tab();
+			});
+		</script>
+	</div>
 	</div>
 </body>
 </div>
