@@ -9,10 +9,10 @@
 			<li role="presentation" class="active"><a href="#snappy-head"
 				data-toggle="tab">Home</a></li>
 			<li role="presentation"><a href="#snappy-code" data-toggle="tab">Code</a></li>
+		 	<li role="presentation"><a href="#snappy-actors"
+				data-toggle="tab">Actors</a></li>
 			<li role="presentation"><a href="#snappy-about"
 				data-toggle="tab">About</a></li>
-<!-- 			<li role="presentation"><a href="#snappy-links"
-				data-toggle="tab">Links</a></li> -->
 			<li role="presentation"><a href="#snappy-contact"
 				data-toggle="tab">Contact</a></li>
 
@@ -148,13 +148,17 @@
 
 			<div class="tab-pane" id="snappy-code">
 				<h1>Code</h1>
-				<h2><a href="https://github.com/tdicken73/snappyWebsiteFinal/">SnappyDB
-					Github</a></h2><br><br>
+					<h2><a href="https://github.com/jblatt1/snappydb">Snappy Database
+					Github</a></h2><br>
+				<h2><a href="https://github.com/tdicken73/snappyWebsiteFinal/">SnappyDB Website
+					Github (including database)</a></h2><br>
+			
+					
 				<h1>Round-Robin Backup Algorithm</h1>
-				<img src="@routes.Assets.at("images/roundrobin.jpg")">
+				<img src="http://40.media.tumblr.com/462eb4cead185c4f4509072cfc825a7d/tumblr_ng3wmjsoXn1qm7eqxo1_1280.png">
 				<br><br>
 				<h1>Actor Design</h1>
-				 <img src="@routes.Assets.at("images/ActorDesign.jpg")">
+				 <img src=https://38.media.tumblr.com/cfa774d93d17b4200ae66713b0517f21/tumblr_ng3wos3kPA1qm7eqxo1_500.png>
 			</div>
 
 
@@ -172,13 +176,15 @@
 						<li>Angular</li>
 					</ul>
 					</h2>
-					<h1>About</h1>
+					<h2>What is our project?</h2>
+<h3>Our project is, simply put, a concurrent key-value store database, built using Actors.  
+When using actors, it becomes far easier to create concurrent and distributed applications.  By implementing a database concurrently, it allows for much faster speeds as well as far greater scalability.  In our system, we are able to receive commands, determine which nodes to store data/access data on, and read/write to disk all concurrently.</h3>
 					
 					<h2>How we use Akka actors</h2>
-<h3>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using actors was a very important part of our database because it allowed us to easy make our applications concurrent.  For our system, there were 5 main actors that we used, our Receptionist, Organizer, Node, Logger, and WebActor.
+<h3>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using actors was a very important part of our database because it allowed us to easily make our applications concurrent.  For our system, there were 5 main actors that we used, our Receptionist, Organizer, Node, Logger, and WebActor.
 <br><br>
 <b>Receptionist</b><br>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our receptionist actor can be thought of the interface into our database.  It passes along commands to the organizer which make the database tick.  It tells the database to put data, get data, add more nodes, and how many backups to keep of each piece of data.
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our receptionist actor can be thought of as the interface to our database.  It passes along commands to the organizer which makes the database tick.  It tells the database to put data, get data, add more nodes, and specifies how many backups to keep of each piece of data.
 <br><br>
 <b>Organizer</b><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Organizer actor in our system is in charge of keeping track of Nodes, as well as deciding which nodes to put data into as well as get data from.  It decides which nodes get data by using a round-robin distributed algorithm, making sure that all data is backed up.  Furthermore, it keeps a map of keys to all Nodes that contain it’s data to make sure data can be retrieved, regardless if Nodes have failed.
@@ -196,10 +202,60 @@
 					</h3>
 			</div>
 
-<!-- 			<div class="tab-pane" id="snappy-links">
-				<h1>Links</h1>
-				<embed src="finPres.pdf" width=800px height=2100px>
-			</div> -->
+ 			<div class="tab-pane" id="snappy-actors">
+				<h1>Actors</h1>
+				<h2>How we use Akka actors</h2>
+				<h3>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using actors
+					was a very important part of our database because it allowed us to
+					easily make our applications concurrent. For our system, there were
+					5 main actors that we used, our Receptionist, Organizer, Node,
+					Logger, and WebActor. <br>
+					<br> <b>Receptionist</b><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our
+					receptionist actor can be thought of as the interface to our
+					database. It passes along commands to the organizer which makes the
+					database tick. It tells the database to put data, get data, add
+					more nodes, and specifies how many backups to keep of each piece of
+					data. <br>
+					<br> <b>Organizer</b><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Organizer
+					actor in our system is in charge of keeping track of Nodes, as well
+					as deciding which nodes to put data into as well as get data from.
+					It decides which nodes get data by using a round-robin distributed
+					algorithm, making sure that all data is backed up. Furthermore, it
+					keeps a map of keys to all Nodes that contain it’s data to make
+					sure data can be retrieved, regardless if Nodes have failed. <br>
+					<br> <b>Node</b><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This actor is
+					in charge of actually reading and writing data to disk. It will
+					receive the put/get command then use the Lightning Memory-Mapped
+					Database to read/write the key-value to disk. When it is done, it
+					will send logging messages to the logging actor, as well as return
+					its result to the organizer. <br>
+					<br> <b>Logger</b><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As the name
+					indicates, this actor is solely used for logging purposes.
+					Specifically, it logs the commands that are performed to readable
+					text files, so that they may be viewed at runtime for demo
+					purposes. It should be noted that this uses Java PrintWriter to
+					write to files, and as such will log at a much slower pace than the
+					database is actually running. <br>
+					<br> <b>WebActor</b><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For our
+					website, we make use of the Play framework and a WebActor. This
+					actor is in charge of communicating with the Receptionist to make
+					calls to our database. When it receives results from the
+					Receptionist, it then uses websockets to push these results to the
+					clients. <br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+				</h3>
+			</div>
 
 			<div class="tab-pane" id="snappy-contact">
 				<h1>Contact</h1>
