@@ -1,4 +1,7 @@
 @layout("Hello Play Akka Angular WebSocket") {
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
 <div class="jumbotron" ng-controller="TimerController">
 	<div class="container">
 
@@ -6,23 +9,109 @@
 		<button class="btn btn-primary col-sm-4 col-sm-offset-1"
 			ng-click="start()">Start</button>
 	</div>
-
-
 </div>
+ 
 <body>
+
+    <div id="main">
 	<div class="container">
 		<div ng-controller="TimerController">
 
-	 		<ul ng-controller="TimerController">
+<!-- 	 		<ul ng-controller="TimerController">
 			Node 1
 			  <li quick-ng-repeat="data in node1|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
-<!-- 				<li ng-repeat="data in node1|limitTo:-10 track by $index">{{data }}</li> -->
+				<li ng-repeat="data in node1|limitTo:-10 track by $index">{{data }}</li>
 			</ul>
 
-			<ul ng-controller="TimerController">
+	 		<ul ng-controller="TimerController">
 			Node 2
-				<li ng-repeat="data in node2|limitTo:-10 track by $index">{{data }}</li>
+			  <li quick-ng-repeat="data in node2|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
+				<li ng-repeat="data in node2|limitTo:-10 track by $index">{{data2 }}</li>
 			</ul>
+				 		<ul ng-controller="TimerController">
+			Node 3
+			  <li quick-ng-repeat="data in node3|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
+				<li ng-repeat="data in node3|limitTo:-10 track by $index">{{data3 }}</li>
+			</ul>
+				 		<ul ng-controller="TimerController">
+			Node 4
+			  <li quick-ng-repeat="data4 in node4|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
+				<li ng-repeat="data4 in node4|limitTo:-10 track by $index">{{data4 }}</li>
+			</ul>
+				 		<ul ng-controller="TimerController">
+			Node 5
+			  <li quick-ng-repeat="data in node5|limitTo:-10 track by $index" quick-repeat-list="data">{{data }}</li>
+				<li ng-repeat="data in node5|limitTo:-10 track by $index">{{data5 }}</li>
+			</ul> -->
+			
+			
+			
+		    <div id="content-1">
+		    <ul ng-controller="TimerController">
+			Node 1
+				<li ng-repeat="data in node1|limitTo:-5 track by $index">{{data }}</li>
+			</ul>
+			</div>
+			<div id="content-2">
+            <div id="content-2-1"> 			
+            <ul ng-controller="TimerController">
+			Node 2
+				<li ng-repeat="data in node2|limitTo:-5 track by $index">{{data }}</li>
+			</ul></div>
+            
+            <div id="content-2-2">
+             <ul ng-controller="TimerController">
+			Node 3
+				<li ng-repeat="data in node3|limitTo:-5 track by $index">{{data }}</li>
+			</ul>
+			</div>
+            </div>
+            <div id="content-1">
+             <ul ng-controller="TimerController">
+			Node 4
+				<li ng-repeat="data in node4|limitTo:-5 track by $index">{{data }}</li>
+			</ul>
+			</div>
+            </div>
+           	<div id="content-2">
+            <div id="content-2-1">
+             <ul ng-controller="TimerController">
+			Node 5
+				<li ng-repeat="data in node5|limitTo:-5 track by $index">{{data }}</li>
+			</ul>
+			</div>
+            <div id="content-2-2">
+             <ul ng-controller="TimerController">
+			Node 6
+				<li ng-repeat="data in node6|limitTo:-5 track by $index">{{data }}</li>
+			</ul>
+			</div>
+            </div>
+            <div id="content-1">
+             <ul ng-controller="TimerController">
+			Node 7
+				<li ng-repeat="data in node7|limitTo:-5 track by $index">{{data }}</li>
+			</ul>
+			</div>
+
+           	<div id="content-2">
+            <div id="content-2-1">
+             <ul ng-controller="TimerController">
+			Node 8
+				<li ng-repeat="data in node8|limitTo:-5 track by $index">{{data }}</li>
+			</ul>
+			</div>
+            <div id="content-2-2">
+             <ul ng-controller="TimerController">
+			Node 9
+				<li ng-repeat="data in node9|limitTo:-5 track by $index">{{data }}</li>
+			</ul>
+			</div>
+            </div>
+            
+    </div>
+			
+			
 <!-- 			
 			<ul ng-controller="TimerController">
 				<li ng-repeat="data in node3|limitTo:-10">{{ data }}</li>
@@ -41,4 +130,5 @@
 	</div>
 </body>
 </div>
+
 }
