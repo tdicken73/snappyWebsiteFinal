@@ -18,7 +18,6 @@ class TimerActor extends Actor {
   import com.snappy.app.Node.Put
 
   // crate a scheduler to send a message to this actor every socket
-  val cancellable = context.system.scheduler.schedule(0 second, 1 second, self, UpdateTime())
 
   case class UserChannel(userId: Int, var channelsCount: Int, enumerator: Enumerator[JsValue], channel: Channel[JsValue])
   
