@@ -80,33 +80,46 @@
 				<button class="btn btn-primary col-sm-4 col-sm-offset-1"
 			ng-click="start()">Start</button><br>	<br><br><br>
 			
-		    <div id="content-1">
+			<div id="content-1">
+
+            <div id="content-1-1"> 	
 		    <ul ng-controller="TimerController">
+		   
 			<b>Node 1</b>
 				<li ng-repeat="data in node1|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
 			</div>
+			</div>
+						 
 			<div id="content-2">
+			  
             <div id="content-2-1"> 			
             <ul ng-controller="TimerController">
 			<b>Node 2</b>
 				<li ng-repeat="data in node2|limitTo:-5 track by $index">{{data }}</li>
-			</ul></div>
-            
+			</ul>			 </div>
+				
+       <br>
             <div id="content-2-2">
              <ul ng-controller="TimerController">
 			<b>Node 3</b>
 				<li ng-repeat="data in node3|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
+
 			</div>
+	
             </div>
-            <div id="content-1">
+			<div id="content-1">
+			    <br>
+            <div id="content-1-1"> 	
              <ul ng-controller="TimerController">
 			<b>Node 4</b>
 				<li ng-repeat="data in node4|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
-			</div>
+			
+			</div>			
             </div>
+            			    <br>
            	<div id="content-2">
             <div id="content-2-1">
              <ul ng-controller="TimerController">
@@ -114,44 +127,57 @@
 				<li ng-repeat="data in node5|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
 			</div>
+			 <br>
             <div id="content-2-2">
              <ul ng-controller="TimerController">
 			<b>Node 6</b>
 				<li ng-repeat="data in node6|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
 			</div>
+						    <br>
             </div>
-            <div id="content-1">
+     			<div id="content-1">
+			    <br>
+            <div id="content-1-1"> 	
              <ul ng-controller="TimerController">
 			<b>Node 7</b>
 				<li ng-repeat="data in node7|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
+	
 			</div>
-
+			    <br>
+			</div>
            	<div id="content-2">
             <div id="content-2-1">
              <ul ng-controller="TimerController">
 			<b>Node 8</b>
 				<li ng-repeat="data in node8|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
+
 			</div>
+				 <br>
             <div id="content-2-2">
              <ul ng-controller="TimerController">
+            
 			<b>Node 9</b>
 				<li ng-repeat="data in node9|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
+
 			</div>
+						    <br>
             </div>
-            
-            
             <div id="content-2">
             <div id="content-2-1">
+            	
              <ul ng-controller="TimerController">
+             
 			<b>Node 10</b>
 				<li ng-repeat="data in node8|limitTo:-5 track by $index">{{data }}</li>
 			</ul>
+
 			</div>
-            </div>
+						    <br>
+            </div> 			    <br> <br> <br>
     </div>
 			
 			
